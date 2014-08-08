@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>
+		Mission Control
+	</title>
+	<link rel="stylesheet" href="fonts/stylesheet.css">
+	<link rel="stylesheet" href="css/style.css">
+	<meta charset="utf-8">
+</head>
+<body>
+
+<div id="container">
+<div class="label-container">
+	<span class="dymotext">Mercury</span> <span class="dymotext">liftoff</span>
+</div>
+
+	<!-- LAZY PROGRAMMER ALERT: DATE IS YEAR/MM/DD/HH/MM/SS TO SIMPLIFY PARSING ;-P -->
+	<div class="countdown" id="liftoff" data-until="2014/8/22/17/0/0">
+		<span class="t">T-</span>
+		<span class="days">00</span> :
+		<span class="hours">00</span> :
+		<span class="mins">00</span> :
+		<span class="secs">00</span>
+	</div>
+
+<div class="label-container">
+	<span class="dymotext">Mission</span> <span class="dymotext">Apollo</span> <span class="dymotext">codefreeze</span>
+</div>
+
+	<!-- LAZY PROGRAMMER ALERT: DATE IS YEAR/MM/DD/HH/MM/SS TO SIMPLIFY PARSING ;-P -->
+	<div class="countdown" id="codefreeze" data-until="2014/8/20/17/0/0">
+		<span class="t">T-</span>
+		<span class="days">00</span> :
+		<span class="hours">00</span> :
+		<span class="mins">00</span> :
+		<span class="secs">00</span>
+	</div>
+</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+	function Countdown(containerId)
+	{
+		var containerElement = $(containerId);
+		var daysEl = containerElement.find(".days");
+		var hoursEl = containerElement.find(".hours");
+		var minsEl = containerElement.find(".mins");
+		var secsEl = containerElement.find(".secs");
+
+		var until = containerElement.attr('data-until');
+		until = until.split("/");
+
+		var untilDate = new Date(until[0], until[1]-1, until[2], until[3], until[4], until[5]);
+
+		var timeDiffFromNow = function () 
+		{
+			var dateNow = new Date();
+			var timeDiff = untilDate - dateNow;
+			return timeDiff / 1000;
+		};
+
+		var pad = function (num, much) 
+		{
+			num = ""+num;
+			for(var i = 0; num.length < much; i++)
+			{
+				num = "" + "0" + num;
+			}
+			return num;
+		};
+
+		var wrapDigits = function(digits)
+		{
+			var ret = "";
+			digits = "" + digits;
+			digits.split("");
+
+			for(var i in digits)
+			{
+				ret =  ret + '<span class="digit">' + digits[i] + '</span>'; 
+			}
+
+			return ret;
+		};
+
+		var render = function ()
+		{
+			var timeDiffSeconds = timeDiffFromNow();
+			var days = Math.floor(timeDiffSeconds / 86400) % 99;
+			var hours = Math.floor(timeDiffSeconds / 3600) % 24;
+			var minutes = Math.floor(timeDiffSeconds / 60) % 60;
+			var secs = Math.floor(timeDiffSeconds) % 60;
+
+			daysEl.html(wrapDigits(pad(days, 2)));
+			hoursEl.html(wrapDigits(pad(hours, 2)));
+			minsEl.html(wrapDigits(pad(minutes, 2)));
+			secsEl.html(wrapDigits(pad(secs, 2)));
+		};
+
+		setInterval(function() {
+			render();
+		}, 1000	)
+
+		render();
+	}
+
+	var counter = new Countdown("#liftoff");
+	var counter = new Countdown("#codefreeze");
+
+
+	</script>
+</body>
+</html>

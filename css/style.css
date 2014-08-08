@@ -1,0 +1,61 @@
+body
+{
+	-webkit-font-smoothing: antialiased;
+	background: #222;
+	color: rgb(240, 240, 240);
+	font-family: "Helvetica";
+}
+
+#container
+{
+	margin: 100px auto;
+	width: 80%;
+}
+h1
+{
+
+}
+
+.label-container
+{
+	background: #111;
+	border: 1px solid rgb(50, 50, 50);
+	padding: 1px 10px;
+	font-size: 30px;
+	font-family: 'dymoregular';
+	display: inline-block;
+	overflow: hidden;
+	height: 30px;
+	margin: 0px 0px 20px 0px;
+}
+
+.countdown
+{
+	font-family: 'digital-7_italicitalic';
+	font-size: 100px;
+	text-shadow: 0 0 0.3em rgba(255, 255, 255, 0.2);
+	margin-bottom: 80px;
+}
+
+.dymotext
+{
+	font-size: 50px;
+	color: #000;
+	background: #fff;
+	padding: 0;
+	margin: -11px 5px;
+	display:inline-block;
+}
+
+.t, .days, .hours, .mins, .secs
+{
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+}
+
+.digit
+{
+	width: 50px;
+	display: inline-block;
+}
